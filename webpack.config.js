@@ -2,6 +2,11 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
+  resolve: {
+    alias: {
+      Urls: path.resolve(__dirname, "src", "urls")
+    }
+  },
   entry: [
     "react-hot-loader/patch",
     "webpack-dev-server/client?http://localhost:8080",
