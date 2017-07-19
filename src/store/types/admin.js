@@ -1,0 +1,11 @@
+export const ADD_DEVICE = "ADD_DEVICE";
+export const REMOVE_DEVICE = "REMOVE_DEVICE";
+export const EDIT_DEVICE = "EDIT_DEVICE";
+
+export const ADD_DEVICE_TYPE = "ADD_DEVICE_TYPE";
+export const REMOVE_DEVICE_TYPE = "REMOVE_DEVICE_TYPE";
+export const EDIT_DEVICE_TYPE = "EDIT_DEVICE_TYPE";
+
+export const ADD_CONTROL = "ADD_CONTROL";
+export const REMOVE_CONTROL = "REMOVE_CONTROL";
+export const EDIT_CONTROL = "EDIT_CONTROL";

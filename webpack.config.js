@@ -4,7 +4,8 @@ const webpack = require("webpack");
 module.exports = {
   resolve: {
     alias: {
-      Urls: path.resolve(__dirname, "src", "urls")
+      Urls: path.resolve(__dirname, "src", "urls"),
+      Store: path.resolve(__dirname, "src", "store")
     }
   },
   entry: [
