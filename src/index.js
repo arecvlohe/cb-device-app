@@ -1,6 +1,28 @@
 import React from "react";
 import { render } from "react-dom";
+import { AppContainer } from "react-hot-loader";
+import { BrowserRouter } from "react-router-dom";
 
-const App = () => <div>App!</div>;
+import AppRouter from "./routes";
 
-render(<App />, document.getElementById("root"));
+const root = document.getElementById("root");
+
+function build(Component) {
+  render(
+    <AppContainer>
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
+    </AppContainer>,
+    root
+  );
+}
+
+build(AppRouter);
+
+if (module.hot) {
+  module.hot.accept("./routes", () => {
+    const AppRouter = require("./routes").default;
+    build(AppRouter);
+  });
+}
