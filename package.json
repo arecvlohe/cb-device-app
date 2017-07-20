@@ -4,9 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --progress"
+    "dev": "webpack-dev-server --progress",
+    "test": "jest"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
@@ -22,6 +24,7 @@
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "jest": "^20.0.4",
     "react-hot-loader": "next",
     "redux-logger": "^3.0.6",
     "webpack": "^3.3.0",

@@ -3,7 +3,7 @@ export default {
     Home: "/admin",
     List: "/admin/list",
     Add: "/admin/add/:type",
-    Edit: "/admin/edit/:alias",
+    Edit: "/admin/edit/:type/:alias",
     Devices: "/admin/devices",
     DeviceTypes: "/admin/device-types",
     Controls: "/admin/controls"

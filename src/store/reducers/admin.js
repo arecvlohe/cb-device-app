@@ -2,13 +2,21 @@ import * as types from "../types";
 
 const initialState = {
   devices: [
-    { name: "Bedroom Apple TV", type: "Apple TV", alias: "apple-tv" },
+    {
+      name: "Bedroom Apple TV",
+      type: "Apple TV",
+      alias: "bedroom-apple-tv"
+    },
     {
       name: "Livingroom Player",
       type: "Samsung Audio",
-      alias: "samsung-audio"
+      alias: "livingroom-player"
     },
-    { name: "Livingroom Lights", type: "Citrus Lights", alias: "citrus-lights" }
+    {
+      name: "Livingroom Lights",
+      type: "Citrus Lights",
+      alias: "livingroom-lights"
+    }
   ],
   deviceTypes: [
     {
