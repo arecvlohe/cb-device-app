@@ -30,7 +30,8 @@ export default {
           name: "Playlist",
           type: "select",
           currentValue: "",
-          alias: "playlist"
+          alias: "playlist",
+          options: ["call me, maybe", "it was a good day", "clarity"]
         }
       ]
     },
@@ -44,7 +45,8 @@ export default {
           name: "Playlist",
           type: "select",
           currentValue: "",
-          alias: "playlist"
+          alias: "playlist",
+          options: ["call me, maybe", "it was a good day", "clarity"]
         }
       ]
     },
