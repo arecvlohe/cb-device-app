@@ -39,9 +39,9 @@ export default function Device({ controls = [] }) {
                 <RenderComponent component="select" key={`${c.name}-${i}`}>
                   {c &&
                     c.options &&
-                    c.options.map(o => {
+                    c.options.map((o, i) => {
                       return (
-                        <option>
+                        <option key={`${o}-${i}`}>
                           {o}
                         </option>
                       );

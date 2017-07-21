@@ -6,7 +6,7 @@ export default {
     Edit: "/admin/edit/:type/:alias"
   },
   App: {
-    Home: "/",
-    Device: "/device/:alias"
+    Home: "/app",
+    Device: "/app/device/:alias"
   }
 };
