@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Urls from "Urls";
 import { replaceParams } from "../helpers";
 
-export default function List({ devices, deviceTypes, controls }) {
+export default function List({ devices, deviceTypes, controls, handleDelete }) {
   return (
     <div>
       <div>
@@ -19,7 +19,8 @@ export default function List({ devices, deviceTypes, controls }) {
                 })}
               >
                 {v.name}
-              </Link>
+              </Link>{" "}
+              <span onClick={() => handleDelete(v)}>x</span>
             </div>
           );
         })}

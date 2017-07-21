@@ -1,21 +1,31 @@
 import * as types from "../types";
+import adjust from "ramda/src/adjust";
+import assocPath from "ramda/src/assocPath";
+import compose from "ramda/src/compose";
+import concat from "ramda/src/concat";
+import findIndex from "ramda/src/findIndex";
+import remove from "ramda/src/remove";
+import update from "ramda/src/update";
 
 const initialState = {
   devices: [
     {
-      name: "Bedroom Apple TV",
-      type: "Apple TV",
-      alias: "bedroom-apple-tv"
+      alias: "bedroom-apple-tv",
+      deviceType: "Apple TV",
+      IPAddress: "108.190.80.165",
+      name: "Bedroom Apple TV"
     },
     {
-      name: "Livingroom Player",
-      type: "Samsung Audio",
-      alias: "livingroom-player"
+      alias: "livingroom-player",
+      deviceType: "Samsung Audio",
+      IPAddress: "108.190.80.165",
+      name: "Livingroom Player"
     },
     {
-      name: "Livingroom Lights",
-      type: "Citrus Lights",
-      alias: "livingroom-lights"
+      alias: "livingroom-lights",
+      deviceType: "Citrus Lights",
+      IPAddress: "108.190.80.165",
+      name: "Livingroom Lights"
     }
   ],
   deviceTypes: [
@@ -71,13 +81,24 @@ const initialState = {
 export default function admin(state = initialState, action) {
   switch (action.type) {
     case types.ADD_DEVICE: {
-      return state;
+      const addDevice = concat(state.devices, [action.payload]);
+      return assocPath(["devices"], addDevice, state);
     }
     case types.EDIT_DEVICE: {
-      return state;
+      const updateDevice = update(
+        findIndex(v => v.alias === action.payload.alias, state.devices),
+        action.payload,
+        state.devices
+      );
+      return assocPath(["devices"], updateDevice, state);
     }
     case types.REMOVE_DEVICE: {
-      return state;
+      const removeDevice = remove(
+        findIndex(v => v.alias === action.payload.alias),
+        1,
+        state.devices
+      );
+      return assocPath(["devices"], removeDevice, state);
     }
     default: {
       return state;

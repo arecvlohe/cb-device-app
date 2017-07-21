@@ -1,7 +1,10 @@
+import React, { Component } from "react";
 import { compose } from "recompose";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import * as selectors from "Store/selectors";
+import { removeDevice } from "Store/actions/admin";
 
 const mapStateToProps = state => {
   return {
@@ -11,4 +14,28 @@ const mapStateToProps = state => {
   };
 };
 
-export default compose(connect(mapStateToProps));
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ removeDevice }, dispatch);
+};
+
+function handlers(WrappedComponent) {
+  return class extends Component {
+    constructor(props) {
+      super(props);
+      this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(device) {
+      const { removeDevice } = this.props;
+      removeDevice(device);
+    }
+
+    render() {
+      return (
+        <WrappedComponent {...this.props} handleDelete={this.handleDelete} />
+      );
+    }
+  };
+}
+
+export default compose(connect(mapStateToProps, mapDispatchToProps), handlers);

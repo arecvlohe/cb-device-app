@@ -15,8 +15,11 @@ const RenderComponent = componentFromProp("component");
 
 export default function AddEdit({
   component,
+  deviceType,
+  deviceTypeNames,
   handleChange,
   handleSubmit,
+  IPAddress,
   isEditMode,
   name,
   ...props
@@ -24,7 +27,15 @@ export default function AddEdit({
   return (
     <RenderComponent
       component={types[component]}
-      {...{ handleChange, handleSubmit, isEditMode, name }}
+      {...{
+        deviceType,
+        deviceTypeNames,
+        handleChange,
+        handleSubmit,
+        IPAddress,
+        isEditMode,
+        name
+      }}
     />
   );
 }

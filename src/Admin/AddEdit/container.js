@@ -2,16 +2,24 @@ import React, { Component } from "react";
 import { compose, componentFromProp } from "recompose";
 import { connect } from "react-redux";
 import Promise from "bluebird";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 
 import * as selectors from "Store/selectors";
+import * as actions from "Store/actions/admin";
 import { isAddRoute, isEditRoute, titleCase, getDevice } from "../helpers";
 
 const mapStateToProps = state => {
   return {
     devices: selectors.devices(state),
     deviceTypes: selectors.deviceTypes(state),
-    controls: selectors.controls(state)
+    controls: selectors.controls(state),
+    deviceTypeNames: selectors.deviceTypeNames(state)
   };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(actions, dispatch);
 };
 
 function handlers(WrappedComponent) {
@@ -42,8 +50,13 @@ function handlers(WrappedComponent) {
     }
 
     handleSubmit(e) {
+      const { editDevice, addDevice, match } = this.props;
       e.preventDefault();
-      console.log("submitting form");
+      if (isEditRoute(match)) {
+        editDevice(this.state);
+      } else {
+        addDevice(this.state);
+      }
     }
 
     render() {
@@ -63,4 +76,4 @@ function handlers(WrappedComponent) {
   };
 }
 
-export default compose(connect(mapStateToProps), handlers);
+export default compose(connect(mapStateToProps, mapDispatchToProps), handlers);
