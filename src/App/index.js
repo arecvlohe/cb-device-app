@@ -8,7 +8,7 @@ import Urls from "Urls";
 export default () =>
   <div>
     <Switch>
-      <Route exact path={Urls.App.Home} component={Home} />
+      <Route path={Urls.App.Home} component={Home} />
       <Route path={Urls.App.Device} component={Device} />
     </Switch>
   </div>;
