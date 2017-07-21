@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import Urls from "Urls";
-import { replaceParams } from "../helpers";
+import { replaceParams } from "Helpers";
 
 export default function List({ devices, deviceTypes, controls, handleDelete }) {
   return (

@@ -3,12 +3,10 @@ export default {
     Home: "/admin",
     List: "/admin/list",
     Add: "/admin/add/:type",
-    Edit: "/admin/edit/:type/:alias",
-    Devices: "/admin/devices",
-    DeviceTypes: "/admin/device-types",
-    Controls: "/admin/controls"
+    Edit: "/admin/edit/:type/:alias"
   },
   App: {
-    Home: "/"
+    Home: "/",
+    Device: "/device/:alias"
   }
 };
