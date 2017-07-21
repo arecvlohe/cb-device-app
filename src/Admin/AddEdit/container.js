@@ -37,6 +37,7 @@ function handlers(WrappedComponent) {
       this.state = {};
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleControlsChange = this.handleControlsChange.bind(this);
     }
 
     componentDidMount() {
@@ -48,6 +49,7 @@ function handlers(WrappedComponent) {
         "device-type": deviceTypes
       };
       if (isEditRoute(match)) {
+        // Faux API request/response
         return new Promise((res, rej) => {
           setTimeout(() => {
             res(getDevice(types[type], alias));
@@ -62,16 +64,36 @@ function handlers(WrappedComponent) {
       this.setState({ [name]: value });
     }
 
+    handleControlsChange(e, kind) {
+      if (kind === "add") {
+        e.persist();
+        this.setState(prevState => ({
+          deviceControls: prevState.deviceControls.concat([
+            this.props.controls.find(c => c.name == e.target.value)
+          ])
+        }));
+      } else {
+        this.setState(prevState => ({
+          deviceControls: prevState.deviceControls.filter(d => {
+            return d.name !== e.name;
+          })
+        }));
+      }
+    }
+
     handleSubmit(e) {
+      e.preventDefault();
+      console.log(e);
       const {
         addControl,
         addDevice,
+        addDeviceType,
         editControl,
         editDevice,
+        editDeviceType,
         match
       } = this.props;
 
-      e.preventDefault();
       if (isEditRoute(match)) {
         switch (match.params.type) {
           case "device": {
@@ -79,6 +101,9 @@ function handlers(WrappedComponent) {
           }
           case "control": {
             return editControl(this.state);
+          }
+          case "device-type": {
+            return editDeviceType(this.state);
           }
         }
       } else {
@@ -89,6 +114,9 @@ function handlers(WrappedComponent) {
           }
           case "control": {
             return addControl(Object.assign({}, this.state, { alias }));
+          }
+          case "device-type": {
+            return addDeviceType(Object.assign({}, this.state, { alias }));
           }
         }
       }
@@ -103,6 +131,7 @@ function handlers(WrappedComponent) {
           {...this.props}
           component={titleCase(type)}
           handleChange={this.handleChange}
+          handleControlsChange={this.handleControlsChange}
           handleSubmit={this.handleSubmit}
           isEditMode={isEditRoute(match)}
         />

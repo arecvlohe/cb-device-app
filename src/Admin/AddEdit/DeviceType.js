@@ -4,6 +4,7 @@ export default function DeviceTypes({
   controlNames,
   deviceControls = [],
   handleChange,
+  handleControlsChange,
   handleSubmit,
   isEditMode,
   name = ""
@@ -16,16 +17,27 @@ export default function DeviceTypes({
       <form onSubmit={handleSubmit}>
         <input name="name" value={name} onChange={handleChange} />
         <br />
-        <select multiple>
-          <option value=""> -- Choose Controls -- </option>
-          {controlNames.map((c, i) => {
+        <div>
+          {deviceControls.map((d, i) => {
             return (
-              <option
-                key={`${c}-${i}`}
-                selected={deviceControls.find(
-                  d => (d.name === c ? true : false)
-                )}
-              >
+              <div key={`${d}-${i}`}>
+                {d.name}{" "}
+                <span onClick={() => handleControlsChange(d, "remove")}>x</span>
+              </div>
+            );
+          })}
+        </div>
+        <label htmlFor="addControl">Add Control</label>
+        <select
+          name="addControl"
+          onChange={e => handleControlsChange(e, "add")}
+        >
+          {controlNames.map((c, i) => {
+            if (deviceControls.find(d => c === d.name) ? true : false) {
+              return;
+            }
+            return (
+              <option value={c} key={`${c}-${i}`}>
                 {c}
               </option>
             );

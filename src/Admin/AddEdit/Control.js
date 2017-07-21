@@ -4,6 +4,7 @@ export default function Control({
   controlNames,
   controlTypes,
   handleChange,
+  handleControlsChange,
   handleSubmit,
   isEditMode,
   name = "",

@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import * as selectors from "Store/selectors";
-import { removeDevice, removeControl } from "Store/actions/admin";
+import {
+  removeControl,
+  removeDevice,
+  removeDeviceType
+} from "Store/actions/admin";
 
 const mapStateToProps = state => {
   return {
@@ -15,7 +19,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ removeDevice, removeControl }, dispatch);
+  return bindActionCreators(
+    { removeDevice, removeControl, removeDeviceType },
+    dispatch
+  );
 };
 
 function handlers(WrappedComponent) {
@@ -26,13 +33,21 @@ function handlers(WrappedComponent) {
     }
 
     handleDelete(data, type) {
-      const { removeDevice, removeControl, match } = this.props;
+      const {
+        match,
+        removeControl,
+        removeDevice,
+        removeDeviceType
+      } = this.props;
       switch (type) {
         case "device": {
           return removeDevice(data);
         }
         case "control": {
           return removeControl(data);
+        }
+        case "device-type": {
+          return removeDeviceType(data);
         }
       }
     }

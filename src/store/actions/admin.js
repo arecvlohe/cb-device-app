@@ -41,3 +41,24 @@ export function editControl(payload) {
     payload
   };
 }
+
+export function addDeviceType(payload) {
+  return {
+    type: types.ADD_DEVICE_TYPE,
+    payload
+  };
+}
+
+export function removeDeviceType(payload) {
+  return {
+    type: types.REMOVE_DEVICE_TYPE,
+    payload
+  };
+}
+
+export function editDeviceType(payload) {
+  return {
+    type: types.EDIT_DEVICE_TYPE,
+    payload
+  };
+}

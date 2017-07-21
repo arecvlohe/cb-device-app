@@ -37,7 +37,8 @@ export default function List({ devices, deviceTypes, controls, handleDelete }) {
                 })}
               >
                 {v.name}
-              </Link>
+              </Link>{" "}
+              <span onClick={() => handleDelete(v, "device-type")}>x</span>
             </div>
           );
         })}
