@@ -1,4 +1,11 @@
-import { replaceParams, isEditRoute, isAddRoute, capitalize } from "../helpers";
+import {
+  capitalize,
+  isAddRoute,
+  isEditRoute,
+  kabobCase,
+  replaceParams,
+  titleCase
+} from "../helpers";
 import Urls from "../../urls";
 
 describe("helpers", () => {
@@ -27,5 +34,14 @@ describe("helpers", () => {
   });
   test("titleCase()", () => {
     const str = "device-types";
+    const actual = "DeviceTypes";
+    const expected = titleCase(str);
+    expect(actual).toEqual(expected);
+  });
+  test("kabobCase()", () => {
+    const str = "Adam's Device";
+    const actual = "adams-device";
+    const expected = kabobCase(str);
+    expect(actual).toEqual(expected);
   });
 });

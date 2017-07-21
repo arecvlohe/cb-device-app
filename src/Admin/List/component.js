@@ -20,7 +20,7 @@ export default function List({ devices, deviceTypes, controls, handleDelete }) {
               >
                 {v.name}
               </Link>{" "}
-              <span onClick={() => handleDelete(v)}>x</span>
+              <span onClick={() => handleDelete(v, "device")}>x</span>
             </div>
           );
         })}
@@ -40,7 +40,15 @@ export default function List({ devices, deviceTypes, controls, handleDelete }) {
         {controls.map((v, i) => {
           return (
             <div key={`controls-${i}`}>
-              {v.name}
+              <Link
+                to={replaceParams(Urls.Admin.Edit, {
+                  alias: v.alias,
+                  type: "control"
+                })}
+              >
+                {v.name}
+              </Link>{" "}
+              <span onClick={() => handleDelete(v, "control")}>x</span>
             </div>
           );
         })}

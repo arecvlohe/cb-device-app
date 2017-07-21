@@ -29,3 +29,7 @@ export function titleCase(str) {
 export function getDevice(devices, alias) {
   return devices.find(v => v.alias === alias);
 }
+
+export function kabobCase(str) {
+  return str.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").split(" ").join("-");
+}

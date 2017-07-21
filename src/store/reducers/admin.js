@@ -1,4 +1,3 @@
-import * as types from "../types";
 import adjust from "ramda/src/adjust";
 import assocPath from "ramda/src/assocPath";
 import compose from "ramda/src/compose";
@@ -6,6 +5,8 @@ import concat from "ramda/src/concat";
 import findIndex from "ramda/src/findIndex";
 import remove from "ramda/src/remove";
 import update from "ramda/src/update";
+
+import * as types from "../types";
 
 const initialState = {
   devices: [
@@ -63,42 +64,57 @@ const initialState = {
     }
   ],
   controls: [
-    { name: "Slider", type: "slider" },
-    { name: "Button", type: "button" },
+    { name: "Slider", type: "slider", alias: "slider" },
+    { name: "Button", type: "button", alias: "button" },
     {
       name: "EQ",
       type: "select",
-      options: ["rock", "pop", "jazz", "balanced"]
+      options: ["rock", "pop", "jazz", "balanced"],
+      alias: "eq"
     },
     {
       name: "Playlist",
       type: "select",
-      options: ["call me, maybe", "it was a good day", "clarity"]
+      options: ["call me, maybe", "it was a good day", "clarity"],
+      alias: "playlist"
     }
   ]
 };
 
+const mapTypes = {
+  ADD_CONTROL: "controls",
+  ADD_DEVICE: "devices",
+  EDIT_CONTROL: "controls",
+  EDIT_DEVICE: "devices",
+  REMOVE_CONTROL: "controls",
+  REMOVE_DEVICE: "devices"
+};
+
 export default function admin(state = initialState, action) {
+  const selectState = mapTypes[`${action.type}`];
   switch (action.type) {
-    case types.ADD_DEVICE: {
-      const addDevice = concat(state.devices, [action.payload]);
-      return assocPath(["devices"], addDevice, state);
+    case types.ADD_DEVICE:
+    case types.ADD_CONTROL: {
+      const addAny = concat(state[selectState], [action.payload]);
+      return assocPath([selectState], addAny, state);
     }
-    case types.EDIT_DEVICE: {
-      const updateDevice = update(
-        findIndex(v => v.alias === action.payload.alias, state.devices),
+    case types.EDIT_DEVICE:
+    case types.EDIT_CONTROL: {
+      const updateAny = update(
+        findIndex(v => v.alias === action.payload.alias, state[selectState]),
         action.payload,
-        state.devices
+        state[selectState]
       );
-      return assocPath(["devices"], updateDevice, state);
+      return assocPath([selectState], updateAny, state);
     }
-    case types.REMOVE_DEVICE: {
-      const removeDevice = remove(
-        findIndex(v => v.alias === action.payload.alias),
+    case types.REMOVE_DEVICE:
+    case types.REMOVE_CONTROL: {
+      const removeAny = remove(
+        findIndex(v => v.alias === action.payload.alias, state[selectState]),
         1,
-        state.devices
+        state[selectState]
       );
-      return assocPath(["devices"], removeDevice, state);
+      return assocPath([selectState], removeAny, state);
     }
     default: {
       return state;

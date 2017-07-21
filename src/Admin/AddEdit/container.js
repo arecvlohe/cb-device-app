@@ -7,14 +7,21 @@ import { withRouter } from "react-router-dom";
 
 import * as selectors from "Store/selectors";
 import * as actions from "Store/actions/admin";
-import { isAddRoute, isEditRoute, titleCase, getDevice } from "../helpers";
+import {
+  isAddRoute,
+  isEditRoute,
+  titleCase,
+  getDevice,
+  kabobCase
+} from "../helpers";
 
 const mapStateToProps = state => {
   return {
     devices: selectors.devices(state),
     deviceTypes: selectors.deviceTypes(state),
     controls: selectors.controls(state),
-    deviceTypeNames: selectors.deviceTypeNames(state)
+    deviceTypeNames: selectors.deviceTypeNames(state),
+    controlNames: selectors.controlNames(state)
   };
 };
 
@@ -32,12 +39,17 @@ function handlers(WrappedComponent) {
     }
 
     componentDidMount() {
-      const { match, devices } = this.props;
-      const { params: { alias } } = match;
+      const { match, devices, controls, deviceTypes } = this.props;
+      const { params: { alias, type } } = match;
+      const types = {
+        device: devices,
+        control: controls,
+        deviceType: deviceTypes
+      };
       if (isEditRoute(match)) {
         return new Promise((res, rej) => {
           setTimeout(() => {
-            res(getDevice(devices, alias));
+            res(getDevice(types[type], alias));
           }, 100);
         }).then(r => {
           this.setState({ ...r });
@@ -50,12 +62,34 @@ function handlers(WrappedComponent) {
     }
 
     handleSubmit(e) {
-      const { editDevice, addDevice, match } = this.props;
+      const {
+        addControl,
+        addDevice,
+        editControl,
+        editDevice,
+        match
+      } = this.props;
+
       e.preventDefault();
       if (isEditRoute(match)) {
-        editDevice(this.state);
+        switch (match.params.type) {
+          case "device": {
+            return editDevice(this.state);
+          }
+          case "control": {
+            return editControl(this.state);
+          }
+        }
       } else {
-        addDevice(this.state);
+        const alias = kabobCase(this.state.name);
+        switch (match.params.type) {
+          case "device": {
+            return addDevice(Object.assign({}, this.state, { alias }));
+          }
+          case "control": {
+            return addControl(Object.assign({}, this.state, { alias }));
+          }
+        }
       }
     }
 
