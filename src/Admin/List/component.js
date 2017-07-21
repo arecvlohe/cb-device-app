@@ -30,7 +30,14 @@ export default function List({ devices, deviceTypes, controls, handleDelete }) {
         {deviceTypes.map((v, i) => {
           return (
             <div key={`deviceTypes-${i}`}>
-              {v.name}
+              <Link
+                to={replaceParams(Urls.Admin.Edit, {
+                  alias: v.alias,
+                  type: "device-type"
+                })}
+              >
+                {v.name}
+              </Link>
             </div>
           );
         })}

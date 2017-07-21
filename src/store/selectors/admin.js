@@ -18,3 +18,8 @@ export const controls = createSelector(controlsPath, id);
 export const controlNames = createSelector([controlsPath], vs =>
   vs.map(v => v.name)
 );
+
+const controlTypesPath = state => state.admin.controlTypes;
+export const controlTypes = createSelector(controlTypesPath, vs =>
+  vs.map(v => v.type)
+);

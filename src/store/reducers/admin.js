@@ -33,34 +33,51 @@ const initialState = {
     {
       name: "Samsung Audio",
       alias: "samsung-audio",
-      controls: [
-        { name: "Power", type: "button", currentValue: "off" },
-        { name: "Volume", type: "slider", currentValue: 50 },
-        { name: "Playlist", type: "select", currentValue: "" }
+      deviceControls: [
+        { name: "Power", type: "button", currentValue: "off", alias: "power" },
+        { name: "Volume", type: "slider", currentValue: 50, alias: "slider" },
+        {
+          name: "Playlist",
+          type: "select",
+          currentValue: "",
+          alias: "playlist"
+        }
       ]
     },
     {
       name: "Sony Audio",
       alias: "sony-audio",
-      controls: [
-        { name: "Power", type: "button", currentValue: "off" },
-        { name: "Volume", type: "slider", currentValue: 0 },
-        { name: "Playlist", type: "select", currentValue: "" }
+      deviceControls: [
+        { name: "Power", type: "button", currentValue: "off", alias: "power" },
+        { name: "Volume", type: "slider", currentValue: 0, alias: "volume" },
+        {
+          name: "Playlist",
+          type: "select",
+          currentValue: "",
+          alias: "playlist"
+        }
       ]
     },
     {
       name: "Apple TV",
       alias: "apple-tv",
-      controls: [
-        { name: "Power", type: "button", currentValue: "off" },
-        { name: "Brightness", type: "slider", currentValue: 100 },
-        { name: "Volume", type: "slider", currentValue: 50 }
+      deviceControls: [
+        { name: "Power", type: "button", currentValue: "off", alias: "power" },
+        {
+          alias: "brightness",
+          currentValue: 100,
+          name: "Brightness",
+          type: "slider"
+        },
+        { name: "Volume", type: "slider", currentValue: 50, alias: "volume" }
       ]
     },
     {
       name: "Citrus Lights",
       alias: "citrus-lights",
-      controls: [{ name: "On/Off", type: "button", currentValue: "off" }]
+      deviceControls: [
+        { name: "On/Off", type: "button", currentValue: "off", alias: "onoff" }
+      ]
     }
   ],
   controls: [
@@ -77,8 +94,13 @@ const initialState = {
       type: "select",
       options: ["call me, maybe", "it was a good day", "clarity"],
       alias: "playlist"
-    }
-  ]
+    },
+    { name: "Power", type: "button", alias: "power" },
+    { name: "Brightness", type: "slider", alias: "brightness" },
+    { name: "Volume", type: "slider", alias: "volume" },
+    { name: "On/Off", type: "button", alias: "onoff" }
+  ],
+  controlTypes: [{ type: "slider" }, { type: "select" }, { type: "button" }]
 };
 
 const mapTypes = {

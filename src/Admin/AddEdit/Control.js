@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Control({
   controlNames,
+  controlTypes,
   handleChange,
   handleSubmit,
   isEditMode,
@@ -17,9 +18,10 @@ export default function Control({
         <label htmlFor="name">Name</label>
         <input name="name" value={name} onChange={handleChange} />
         <br />
-        <label htmlFor="type">Control Type</label>
+        <label htmlFor="type">Type</label>
         <select value={type} onChange={handleChange} name="type">
-          {controlNames.map((c, i) => {
+          <option value=""> -- Choose a Control Type -- </option>
+          {controlTypes.map((c, i) => {
             return (
               <option value={c} key={`${c}-${i}`}>
                 {c}

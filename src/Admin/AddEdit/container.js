@@ -21,7 +21,8 @@ const mapStateToProps = state => {
     deviceTypes: selectors.deviceTypes(state),
     controls: selectors.controls(state),
     deviceTypeNames: selectors.deviceTypeNames(state),
-    controlNames: selectors.controlNames(state)
+    controlNames: selectors.controlNames(state),
+    controlTypes: selectors.controlTypes(state)
   };
 };
 
@@ -44,7 +45,7 @@ function handlers(WrappedComponent) {
       const types = {
         device: devices,
         control: controls,
-        deviceType: deviceTypes
+        "device-type": deviceTypes
       };
       if (isEditRoute(match)) {
         return new Promise((res, rej) => {
