@@ -1197,7 +1197,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
-classnames@^2.1.5:
+classnames@^2.1.5, classnames@^2.2.3, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -3549,6 +3549,13 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
+react-rangeslider@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-rangeslider/-/react-rangeslider-2.1.0.tgz#7473bcccf354fba7017047827d06e2ab2fd0c77b"
+  dependencies:
+    classnames "^2.2.3"
+    resize-observer-polyfill "^1.4.2"
+
 react-redux@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.5.tgz#f8e8c7b239422576e52d6b7db06439469be9846a"
@@ -3581,6 +3588,12 @@ react-router@^4.1.1:
     path-to-regexp "^1.5.3"
     prop-types "^15.5.4"
     warning "^3.0.0"
+
+react-toggle@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-toggle/-/react-toggle-4.0.1.tgz#0e83e8c94d94232debfa21a938ff3d2b2106ec72"
+  dependencies:
+    classnames "^2.2.5"
 
 react@^15.6.1:
   version "15.6.1"
@@ -3769,6 +3782,10 @@ requires-port@1.0.x, requires-port@1.x.x:
 reselect@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
+
+resize-observer-polyfill@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.4.2.tgz#a37198e6209e888acb1532a9968e06d38b6788e5"
 
 resolve-pathname@^2.0.0:
   version "2.1.0"
