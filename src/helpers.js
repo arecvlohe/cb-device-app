@@ -31,5 +31,6 @@ export function getDevice(devices, alias) {
 }
 
 export function kabobCase(str) {
+  if (!str) return null;
   return str.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, "").split(" ").join("-");
 }

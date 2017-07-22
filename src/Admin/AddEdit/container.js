@@ -34,7 +34,10 @@ function handlers(WrappedComponent) {
   return class extends Component {
     constructor(props) {
       super(props);
-      this.state = {};
+      this.state = {
+        deviceControls: [],
+        isSaved: false
+      };
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleControlsChange = this.handleControlsChange.bind(this);

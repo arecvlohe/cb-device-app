@@ -6,6 +6,5 @@ import Urls from "Urls";
 
 export default () =>
   <div>
-    <Link to={Urls.Admin.List}>Admin Home</Link>
     <Route path={Urls.Admin.Home} component={Home} />
   </div>;
