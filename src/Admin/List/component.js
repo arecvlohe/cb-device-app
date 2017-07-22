@@ -1,66 +1,112 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Header, Segment, Icon, List as SList } from "semantic-ui-react";
+import styled from "styled-components";
 
 import Urls from "Urls";
 import { replaceParams } from "Helpers";
 
-export default function List({ devices, deviceTypes, controls, handleDelete }) {
+function List({ devices, deviceTypes, controls, handleDelete, className }) {
   return (
-    <div>
-      <div>
-        <h3>Devices</h3>
-        {devices.map((v, i) => {
-          return (
-            <div key={`device-${i}`}>
-              <Link
-                to={replaceParams(Urls.Admin.Edit, {
-                  alias: v.alias,
-                  type: "device"
-                })}
-              >
-                {v.name}
-              </Link>{" "}
-              <span onClick={() => handleDelete(v, "device")}>x</span>
-            </div>
-          );
-        })}
+    <div className={className}>
+      <div className="segments">
+        <Header as="h2" attached="top">
+          <Icon name="tv" /> Devices
+        </Header>
+        <Segment attached>
+          <SList divided relaxed>
+            {devices.map((v, i) => {
+              return (
+                <SList.Item key={`device-${i}`}>
+                  <Link
+                    to={replaceParams(Urls.Admin.Edit, {
+                      alias: v.alias,
+                      type: "device"
+                    })}
+                  >
+                    {v.name}
+                  </Link>{" "}
+                  <span
+                    className="delete"
+                    onClick={() => handleDelete(v, "device")}
+                  >
+                    <Icon name="trash" color="grey" />
+                  </span>
+                </SList.Item>
+              );
+            })}
+          </SList>
+        </Segment>
       </div>
-      <div>
-        <h3>Device Types</h3>
-        {deviceTypes.map((v, i) => {
-          return (
-            <div key={`deviceTypes-${i}`}>
-              <Link
-                to={replaceParams(Urls.Admin.Edit, {
-                  alias: v.alias,
-                  type: "device-type"
-                })}
-              >
-                {v.name}
-              </Link>{" "}
-              <span onClick={() => handleDelete(v, "device-type")}>x</span>
-            </div>
-          );
-        })}
+      <div className="segments">
+        <Header as="h2" attached="top">
+          <Icon name="setting" /> Device Types
+        </Header>
+        <Segment attached>
+          <SList divided relaxed>
+            {deviceTypes.map((v, i) => {
+              return (
+                <SList.Item key={`deviceTypes-${i}`}>
+                  <Link
+                    to={replaceParams(Urls.Admin.Edit, {
+                      alias: v.alias,
+                      type: "device-type"
+                    })}
+                  >
+                    {v.name}
+                  </Link>{" "}
+                  <span
+                    className="delete"
+                    onClick={() => handleDelete(v, "device-type")}
+                  >
+                    <Icon name="trash" color="grey" />
+                  </span>
+                </SList.Item>
+              );
+            })}
+          </SList>
+        </Segment>
       </div>
-      <div>
-        <h3>Controls</h3>
-        {controls.map((v, i) => {
-          return (
-            <div key={`controls-${i}`}>
-              <Link
-                to={replaceParams(Urls.Admin.Edit, {
-                  alias: v.alias,
-                  type: "control"
-                })}
-              >
-                {v.name}
-              </Link>{" "}
-              <span onClick={() => handleDelete(v, "control")}>x</span>
-            </div>
-          );
-        })}
+      <div className="segments">
+        <Header as="h2" attached="top">
+          <Icon name="game" /> Controls
+        </Header>
+        <Segment attached>
+          <SList divided relaxed>
+            {controls.map((v, i) => {
+              return (
+                <SList.Item key={`controls-${i}`}>
+                  <Link
+                    to={replaceParams(Urls.Admin.Edit, {
+                      alias: v.alias,
+                      type: "control"
+                    })}
+                  >
+                    {v.name}
+                  </Link>{" "}
+                  <span
+                    className="delete"
+                    onClick={() => handleDelete(v, "control")}
+                  >
+                    <Icon name="trash" color="grey" />
+                  </span>
+                </SList.Item>
+              );
+            })}
+          </SList>
+        </Segment>
       </div>
     </div>
   );
 }
+
+export default styled(List)`
+  .segments {
+    padding: 20px;
+  }
+  .delete {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
