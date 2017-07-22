@@ -3,7 +3,12 @@ import { componentFromProp } from "recompose";
 
 const RenderComponent = componentFromProp("component");
 
-export default function Device({ controls = [] }) {
+export default function Device({
+  controls = [],
+  handleToggle,
+  handleSelect,
+  handleSlider
+}) {
   return (
     <div>
       {controls.map((c, i) => {
@@ -12,9 +17,13 @@ export default function Device({ controls = [] }) {
             return (
               <div key={`${c.name}-${i}`}>
                 {c.name}
-                <RenderComponent component="button">
-                  {c.currentValue}
-                </RenderComponent>
+                <RenderComponent
+                  checked={c.currentValue === "on" ? true : false}
+                  component="input"
+                  name={c.alias}
+                  onClick={handleToggle}
+                  type="radio"
+                />
               </div>
             );
           }
@@ -23,11 +32,12 @@ export default function Device({ controls = [] }) {
               <div key={`${c.name}-${i}`}>
                 {c.name}
                 <RenderComponent
-                  name="slider"
-                  value={c.currentValue}
                   component="input"
-                  type="range"
                   key={`${c.name}-${i}`}
+                  name={c.alias}
+                  onInput={handleSlider}
+                  type="range"
+                  value={c.currentValue}
                 />
               </div>
             );
@@ -36,12 +46,18 @@ export default function Device({ controls = [] }) {
             return (
               <div key={`${c.name}-${i}`}>
                 {c.name}
-                <RenderComponent component="select">
+                <RenderComponent
+                  component="select"
+                  name={c.alias}
+                  onChange={handleSelect}
+                  value={c.currentValue}
+                >
+                  <option value=""> -- Choose from Options -- </option>
                   {c &&
                     c.options &&
                     c.options.map((o, i) => {
                       return (
-                        <option key={`${o}-${i}`}>
+                        <option key={`${o}-${i}`} value={o}>
                           {o}
                         </option>
                       );

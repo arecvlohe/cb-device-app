@@ -3,18 +3,42 @@ export default {
     {
       alias: "bedroom-apple-tv",
       deviceType: "Apple TV",
+      deviceControls: [
+        { name: "Power", type: "button", currentValue: "off", alias: "power" },
+        {
+          alias: "brightness",
+          currentValue: 100,
+          name: "Brightness",
+          type: "slider"
+        },
+        { name: "Volume", type: "slider", currentValue: 50, alias: "volume" }
+      ],
       IPAddress: "108.190.80.165",
       name: "Bedroom Apple TV"
     },
     {
       alias: "livingroom-player",
       deviceType: "Samsung Audio",
+      deviceControls: [
+        { name: "Power", type: "button", currentValue: "off", alias: "power" },
+        { name: "Volume", type: "slider", currentValue: 50, alias: "slider" },
+        {
+          name: "Playlist",
+          type: "select",
+          currentValue: "",
+          alias: "playlist",
+          options: ["call me, maybe", "it was a good day", "clarity"]
+        }
+      ],
       IPAddress: "108.190.80.165",
       name: "Livingroom Player"
     },
     {
       alias: "livingroom-lights",
       deviceType: "Citrus Lights",
+      deviceControls: [
+        { name: "On/Off", type: "button", currentValue: "off", alias: "onoff" }
+      ],
       IPAddress: "108.190.80.165",
       name: "Livingroom Lights"
     }
