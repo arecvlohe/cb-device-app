@@ -5,7 +5,8 @@ module.exports = {
   resolve: {
     alias: {
       Urls: path.resolve(__dirname, "src", "urls"),
-      Store: path.resolve(__dirname, "src", "store")
+      Store: path.resolve(__dirname, "src", "store"),
+      Helpers: path.resolve(__dirname, "src", "helpers")
     }
   },
   entry: [

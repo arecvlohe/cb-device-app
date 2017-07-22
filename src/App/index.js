@@ -1,10 +1,14 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
+import Device from "./Device";
 import Home from "./Home";
 import Urls from "Urls";
 
 export default () =>
   <div>
-    <Route path={Urls.App.Home} component={Home} />
+    <Switch>
+      <Route exact path={Urls.App.Home} component={Home} />
+      <Route path={Urls.App.Device} component={Device} />
+    </Switch>
   </div>;

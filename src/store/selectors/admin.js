@@ -12,6 +12,14 @@ export const deviceTypeNames = createSelector([deviceTypesPath], vs =>
   vs.map(v => v.name)
 );
 
+const devicesPathApp = state => state.app.devices;
+
+export const controlsForDevice = deviceAlias =>
+  createSelector(devicesPathApp, devices => {
+    const device = devices.find(d => d.alias === deviceAlias) || {};
+    return device.deviceControls || null;
+  });
+
 const controlsPath = state => state.admin.controls;
 export const controls = createSelector(controlsPath, id);
 

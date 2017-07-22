@@ -4,7 +4,7 @@ import { Route, Link, Redirect } from "react-router-dom";
 import Urls from "Urls";
 import List from "../List";
 import AddEdit from "../AddEdit";
-import { replaceParams } from "../helpers";
+import { replaceParams } from "Helpers";
 
 export default function Home() {
   return (

@@ -13,7 +13,7 @@ import {
   titleCase,
   getDevice,
   kabobCase
-} from "../helpers";
+} from "Helpers";
 
 const mapStateToProps = state => {
   return {
