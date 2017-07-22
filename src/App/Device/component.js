@@ -10,9 +10,9 @@ export default function Device({ controls = [] }) {
         switch (c.type) {
           case "button": {
             return (
-              <div>
+              <div key={`${c.name}-${i}`}>
                 {c.name}
-                <RenderComponent component="button" key={`${c.name}-${i}`}>
+                <RenderComponent component="button">
                   {c.currentValue}
                 </RenderComponent>
               </div>
@@ -20,7 +20,7 @@ export default function Device({ controls = [] }) {
           }
           case "slider": {
             return (
-              <div>
+              <div key={`${c.name}-${i}`}>
                 {c.name}
                 <RenderComponent
                   name="slider"
@@ -34,9 +34,9 @@ export default function Device({ controls = [] }) {
           }
           case "select": {
             return (
-              <div>
+              <div key={`${c.name}-${i}`}>
                 {c.name}
-                <RenderComponent component="select" key={`${c.name}-${i}`}>
+                <RenderComponent component="select">
                   {c &&
                     c.options &&
                     c.options.map((o, i) => {

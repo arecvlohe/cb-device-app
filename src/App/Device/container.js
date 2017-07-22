@@ -7,7 +7,6 @@ import * as selectors from "Store/selectors";
 import { getDevice, titleCase } from "Helpers";
 
 const mapStateToProps = (state, props) => {
-  console.log(props.match.params.alias);
   return {
     devices: selectors.devices(state),
     controls: selectors.controlsForDevice(props.match.params.alias)(state)
