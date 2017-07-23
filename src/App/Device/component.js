@@ -67,6 +67,7 @@ function Device({
                     </div>
                     <RenderComponent
                       component="select"
+                      className="ui normal dropdown"
                       name={c.alias}
                       onChange={handleSelect}
                       value={c.currentValue}
