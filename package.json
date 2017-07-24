@@ -5,10 +5,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --progress",
-    "test": "jest"
+    "test": "jest",
+    "prod": "NODE_ENV=production webpack --config ./webpack.prod.js --progress",
+    "build": "npm run prod",
+    "now-start": "node ./server/index.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
+    "express": "^4.15.3",
     "ramda": "^0.24.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

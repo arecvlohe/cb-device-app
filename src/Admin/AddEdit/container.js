@@ -86,7 +86,6 @@ function handlers(WrappedComponent) {
 
     handleSubmit(e) {
       e.preventDefault();
-      console.log(e);
       const {
         addControl,
         addDevice,
